@@ -1,0 +1,14 @@
+COMSC-301-03
+Joshua Dunne
+
+The plan here is to create a number bucket class that provides
+both dynamic allocation and a LIFO file structure
+as such, the last element to be pushed on to the number bucket
+should be the first element that is popped from it
+isEmpty() should return true when there is no elements left in the bucket
+get_size() should return the number of elements in the bucket
+top() should provide the element that would be popped from the bucket
+push() should should take the provided element and push it on to the bucket
+pop() should remove the topmost element from the bucket
+there should also be a reasonable number of tests verifying
+functionality of the underlying numberbucket
