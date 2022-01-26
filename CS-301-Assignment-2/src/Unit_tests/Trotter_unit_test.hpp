@@ -22,4 +22,6 @@ void checkSwap();
 
 void checkSwapLargestMobileElement();
 
+void checkReverseDirectionOfAllLargerElements();
+
 #endif /* TROTTER_UNIT_TEST_HPP_ */

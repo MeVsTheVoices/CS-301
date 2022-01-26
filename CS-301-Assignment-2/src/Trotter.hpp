@@ -27,6 +27,6 @@ void swapBools(vector<bool>& a, vector<bool>& b, int aIndex, int bIndex);
 
 int swapLargestMobileElement(vector<int>& elements, vector<bool>&isLeft, int largestMobileIndex);
 
-void reverseDirectionOfAllLargerElements(const vector<int>& elements, vector<bool>& isLeft, int largestMobileIndex);
+void reverseDirectionOfAllLargerElements(const vector<int>& elements, vector<bool>& isLeft, int movedMobile);
 
 #endif /* TROTTER_HPP_ */

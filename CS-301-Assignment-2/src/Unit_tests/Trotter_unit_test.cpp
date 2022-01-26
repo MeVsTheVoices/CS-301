@@ -17,6 +17,7 @@ void doAllTrotterUnitTests() {
 	checkGetIndexOfLargestMobile();
 	checkSwap();
 	checkSwapLargestMobileElement();
+	checkReverseDirectionOfAllLargerElements();
 }
 
 //vector<int> createListOfNaturalNumbers(vector<int>, int, int);
@@ -141,4 +142,41 @@ void checkSwapLargestMobileElement() {
 	cout << endl;
 
 	cout << "largest mobile now in position " << newLargestMobileIndex << endl;
+}
+
+void checkReverseDirectionOfAllLargerElements() {
+	cout << "checking reversing all larger than mobile element" << endl;
+
+	const int testLength = 3;
+
+	int test3I[] = {2, 3, 1};
+	bool test3B[] = {true, false, true};
+
+	vector<int> elements;
+	vector<bool> isLeft;
+
+	for (int i = 0; i < testLength; i++) {
+		elements.push_back(test3I[i]);
+		isLeft.push_back(test3B[i]);
+	}
+
+	for (int i = 0; i < testLength; i++) {
+		cout << elements[i] << ' ' << isLeft[i] << '\t';
+	}
+	cout << endl;
+
+	int rTest3I[] = {2, 3, 1};
+	bool rTest3B[] = {false, true, true};
+
+	reverseDirectionOfAllLargerElements(elements, isLeft, 2);
+
+	for (int i = 0; i < testLength; i++) {
+		cout << elements[i] << ' ' << isLeft[i] << '\t';
+	}
+	cout << endl;
+
+	for (int i = 0; i < testLength; i++) {
+		assert(rTest3I[i] == elements[i]);
+		assert(rTest3B[i] == isLeft[i]);
+	}
 }

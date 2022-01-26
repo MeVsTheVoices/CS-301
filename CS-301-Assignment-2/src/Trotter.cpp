@@ -76,11 +76,10 @@ int swapLargestMobileElement(vector<int>& elements, vector<bool>&isLeft, int lar
 	return newLargestMobileIndex;
 }
 
-void reverseDirectionOfAllLargerElements(const vector<int>& elements, vector<bool>& isLeft, int largestMobileIndex) {
-	int largestElementValue = elements[largestMobileIndex];
+void reverseDirectionOfAllLargerElements(const vector<int>& elements, vector<bool>& isLeft, int movedMobile) {
+	int movedMobileValue = elements[movedMobile];
 
-	for (int i = 0; i < elements.size(); i++) {
-		if (largestElementValue > elements[i])
+	for (int i = 0; i < elements.size(); i++)
+		if (movedMobileValue < elements[i])
 			isLeft[i] = !isLeft[i];
-	}
 }
