@@ -31,4 +31,8 @@ void reverseDirectionOfAllLargerElements(const vector<int>& elements, vector<boo
 
 bool doOnePermutation(vector<int>& elements, vector<bool>& isLeft);
 
+void doAllPermutations(vector<vector<int> >& results, const vector<int>& elements);
+
+int factorial(int upTo);
+
 #endif /* TROTTER_HPP_ */

@@ -19,6 +19,7 @@ void doAllTrotterUnitTests() {
 	checkSwapLargestMobileElement();
 	checkReverseDirectionOfAllLargerElements();
 	checkDoOnePermutation();
+	checkDoAllPermutations();
 }
 
 //vector<int> createListOfNaturalNumbers(vector<int>, int, int);
@@ -127,22 +128,9 @@ void checkSwapLargestMobileElement() {
 
 	int largestIndex = getIndexOfLargestMobile(elements, isLeft);
 
-	cout << "largest index found is " << largestIndex << endl;
-
-	for (int i = 0;i < testLength; i++) {
-		cout << elements[i] << ' ' << isLeft[i] << '\t';
-	}
-	cout << endl;
-
 	int newLargestMobileIndex = swapLargestMobileElement(elements, isLeft, largestIndex);
 
-	cout << "now swapped" << endl;
-	for (int i = 0;i < testLength; i++) {
-		cout << elements[i] << ' ' << isLeft[i] << '\t';
-	}
-	cout << endl;
-
-	cout << "largest mobile now in position " << newLargestMobileIndex << endl;
+	assert(newLargestMobileIndex == 2);
 }
 
 void checkReverseDirectionOfAllLargerElements() {
@@ -161,20 +149,10 @@ void checkReverseDirectionOfAllLargerElements() {
 		isLeft.push_back(test3B[i]);
 	}
 
-	for (int i = 0; i < testLength; i++) {
-		cout << elements[i] << ' ' << isLeft[i] << '\t';
-	}
-	cout << endl;
-
 	int rTest3I[] = {2, 3, 1};
 	bool rTest3B[] = {false, true, true};
 
 	reverseDirectionOfAllLargerElements(elements, isLeft, 2);
-
-	for (int i = 0; i < testLength; i++) {
-		cout << elements[i] << ' ' << isLeft[i] << '\t';
-	}
-	cout << endl;
 
 	for (int i = 0; i < testLength; i++) {
 		assert(rTest3I[i] == elements[i]);
@@ -183,5 +161,74 @@ void checkReverseDirectionOfAllLargerElements() {
 }
 
 void checkDoOnePermutation() {
+	vector<int> elements;
+		vector<bool> isLeft;
 
+		const int testLength = 3;
+		const int numbTests = 3;
+
+		int test1I[] = {1, 2, 3};
+		bool test1B[] = {true, true, true};
+		int test2I[] = {3, 1, 2};
+		bool test2B[] = {true, true, true};
+		int test3I[] = {2, 3, 1};
+		bool test3B[] = {true, false, true};
+
+		int test1IR[] = {1, 3, 2};
+		bool test1IB[] = {true, true, true};
+		int test2IR[] = {3, 2, 1};
+		bool test2IB[] = {false, true, true};
+		int test3IR[] = {2, 1, 3};
+		bool test3IB[] = {true, true, false};
+
+		int* testsI[] = {test1I, test2I, test3I};
+		bool* testsB[] = {test1B, test2B, test3B};
+
+		int* testsIR[] = {test1IR, test2IR, test3IR};
+		bool* testsBR[] = {test1IB, test2IB, test3IB};
+
+		cout << "testing single permutation" << endl;
+
+		for (int i = 0; i < numbTests; i++) {
+			elements.clear();
+			isLeft.clear();
+
+			for (int j = 0; j < testLength; j++) {
+				elements.push_back(testsI[i][j]);
+				isLeft.push_back(testsB[i][j]);
+			}
+
+			doOnePermutation(elements, isLeft);
+
+			for (int j = 0; j < testLength; j++) {
+				assert(elements[j] == testsIR[i][j]);
+				assert(isLeft[j] == testsBR[i][j]);
+			}
+		}
+}
+
+#include <algorithm>
+
+void checkDoAllPermutations() {
+	for (int a = 3; a < 8; a++) {
+		vector<vector<int> > permutations;
+		vector<int> elements;
+		createListOfNaturalNumbers(elements, 1, a);
+		doAllPermutations(permutations, elements);
+
+		for (auto i : permutations) {
+			for (auto j : i)
+				cout << j << ' ';
+			cout << '\t';
+		}
+		cout << endl;
+
+		cout << "should be " << factorial(a) << endl;
+
+		sort(permutations.begin(), permutations.end());
+		auto it = std::unique(permutations.begin(), permutations.end());
+		assert(it == permutations.end());
+		assert(permutations.size() == factorial(a));
+\
+	}
 }

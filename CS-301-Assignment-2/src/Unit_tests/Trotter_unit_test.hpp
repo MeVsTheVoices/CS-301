@@ -26,4 +26,6 @@ void checkReverseDirectionOfAllLargerElements();
 
 void checkDoOnePermutation();
 
+void checkDoAllPermutations();
+
 #endif /* TROTTER_UNIT_TEST_HPP_ */
