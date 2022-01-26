@@ -18,6 +18,7 @@ void doAllTrotterUnitTests() {
 	checkSwap();
 	checkSwapLargestMobileElement();
 	checkReverseDirectionOfAllLargerElements();
+	checkDoOnePermutation();
 }
 
 //vector<int> createListOfNaturalNumbers(vector<int>, int, int);
@@ -179,4 +180,8 @@ void checkReverseDirectionOfAllLargerElements() {
 		assert(rTest3I[i] == elements[i]);
 		assert(rTest3B[i] == isLeft[i]);
 	}
+}
+
+void checkDoOnePermutation() {
+
 }

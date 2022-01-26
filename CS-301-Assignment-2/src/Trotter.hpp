@@ -29,4 +29,6 @@ int swapLargestMobileElement(vector<int>& elements, vector<bool>&isLeft, int lar
 
 void reverseDirectionOfAllLargerElements(const vector<int>& elements, vector<bool>& isLeft, int movedMobile);
 
+bool doOnePermutation(vector<int>& elements, vector<bool>& isLeft);
+
 #endif /* TROTTER_HPP_ */

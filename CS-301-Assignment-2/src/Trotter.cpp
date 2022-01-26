@@ -83,3 +83,12 @@ void reverseDirectionOfAllLargerElements(const vector<int>& elements, vector<boo
 		if (movedMobileValue < elements[i])
 			isLeft[i] = !isLeft[i];
 }
+
+bool doOnePermutation(vector<int>& elements, vector<bool>& isLeft) {
+	int indexOfMobileBeforeMove = getIndexOfLargestMobile;
+	if (indexOfMobileBeforeMove == -1)
+		return false;
+	int indexOfMobileAfterMove = swapLargestMobileElement(elements, isLeft, indexOfMobileBeforeMove);
+	reverseDirectionOfAllLargerElements(elements, isLeft, indexOfMobileAfterMove);
+	return true;
+}
