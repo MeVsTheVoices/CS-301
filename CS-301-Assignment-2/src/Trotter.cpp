@@ -2,7 +2,7 @@
  * Trotter.cpp
  *
  *  Created on: Jan 24, 2022
- *      Author: joshuadunne
+ *      Author: Joshua Dunne
  */
 
 #include "Trotter.hpp"

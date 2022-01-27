@@ -2,7 +2,7 @@
  * Trotter_unit_test.hpp
  *
  *  Created on: Jan 24, 2022
- *      Author: joshuadunne
+ *      Author: Joshua Dunne
  */
 
 #ifndef TROTTER_UNIT_TEST_HPP_

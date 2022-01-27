@@ -2,7 +2,7 @@
  * NumberBucket.h
  *
  *  Created on: Jan 22, 2022
- *      Author: joshuadunne
+ *      Author: Joshua Dunne
  *      Class:  CS-301
  */
 

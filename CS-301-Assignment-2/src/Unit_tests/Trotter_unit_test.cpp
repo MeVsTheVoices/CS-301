@@ -2,7 +2,7 @@
  * Trotter_unit_test.cpp
  *
  *  Created on: Jan 24, 2022
- *      Author: joshuadunne
+ *      Author: Joshua Dunne
  */
 
 #include "Trotter_unit_test.hpp"
@@ -11,6 +11,7 @@
 
 #include <iterator>
 
+//test, from most basic to those compositing others
 void doAllTrotterUnitTests() {
 	checkCreateListOfNaturalNumbers();
 	checkCreateListOfDirections();
@@ -22,7 +23,6 @@ void doAllTrotterUnitTests() {
 	checkDoAllPermutations();
 }
 
-//vector<int> createListOfNaturalNumbers(vector<int>, int, int);
 void checkCreateListOfNaturalNumbers() {
 	int start = 1;
 	int end = 25;
@@ -45,6 +45,7 @@ void checkCreateListOfDirections() {
 
 }
 
+//using the specification given, gonna test out some simple cases
 void checkGetIndexOfLargestMobile() {
 	vector<int> elements;
 	vector<bool> isLeft;
@@ -72,18 +73,15 @@ void checkGetIndexOfLargestMobile() {
 		elements.clear();
 		isLeft.clear();
 
-		cout << "test " << i << " is" << '\t';
 		for (int j = 0; j < testLength; j++) {
 			elements.push_back(testsI[i][j]);
 			isLeft.push_back(testsB[i][j]);
-			cout << elements.back() << ' ' << isLeft.back() << '\t';
 		}
-		cout << getIndexOfLargestMobile(elements, isLeft);
 		assert(getIndexOfLargestMobile(elements, isLeft) == results[i]);
-		cout << endl;
 	}
 }
 
+//should've used bitset, ended up needing two functions to swap ints and bools
 void checkSwap() {
 	cout << "checking swapInts function" << endl;
 	{
@@ -160,6 +158,7 @@ void checkReverseDirectionOfAllLargerElements() {
 	}
 }
 
+//use the specification to make sure we're doing a single permutation correctly
 void checkDoOnePermutation() {
 	vector<int> elements;
 		vector<bool> isLeft;
@@ -189,6 +188,7 @@ void checkDoOnePermutation() {
 
 		cout << "testing single permutation" << endl;
 
+		//loop through each test case, make sure that we're getting the correct result
 		for (int i = 0; i < numbTests; i++) {
 			elements.clear();
 			isLeft.clear();
@@ -210,6 +210,7 @@ void checkDoOnePermutation() {
 #include <algorithm>
 
 void checkDoAllPermutations() {
+	cout << "testing permutations" << endl;
 	for (int a = 3; a < 8; a++) {
 		vector<vector<int> > permutations;
 		vector<int> elements;
@@ -227,8 +228,16 @@ void checkDoAllPermutations() {
 
 		sort(permutations.begin(), permutations.end());
 		auto it = std::unique(permutations.begin(), permutations.end());
+
+		//check that each permutation is unique
 		assert(it == permutations.end());
+		//check that there are the correct number of permutations
 		assert(permutations.size() == factorial(a));
-\
+
+		auto isContainedInRange = [a](int b) { return (b >= 1 && b <= a); };
+
+		//assert that the permutations generated contain only those element in the original set
+		for (auto i : permutations)
+			assert(std::all_of(i.begin(), i.end(), isContainedInRange));
 	}
 }
