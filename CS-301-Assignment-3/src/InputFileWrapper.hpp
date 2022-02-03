@@ -21,8 +21,9 @@ private:
 	std::map<std::basic_string<char>, InputFunctionWithoutArgument> mFunctionMapWithoutArgument;
 
 	std::list<int> mList;
+	const int mMaxSize;
 public:
-	InputFileWrapper();
+	InputFileWrapper(int);
 
 	std::string execute(const std::string);
 };

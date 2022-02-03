@@ -1,0 +1,13 @@
+Project plan
+
+Joshua Dunne
+20225_CS_301_03_1
+
+We're creating a unsorted list that can be inserted into, retrieved from, and deleted from
+the idea I'm going with is to use a std map of std functions
+each entry in the map has an associated name
+that name is used to look up the command in the map and its associated function
+that function is then executed and its results returned as a string
+this string is then shown to the user and saved in to the output file
+the specification also states a few other necessary features of the list implementation
+such as the commands it must accept, and the ceiling, the maximum number of elements it can contain
