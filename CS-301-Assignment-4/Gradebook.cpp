@@ -55,17 +55,14 @@ void Gradebook::processGrades(const std::string& category, std::function<float(c
 	auto& gradeSet = mGrades[category];
 	for(auto& i : gradeSet) {
 		float grade = request(i.first, mUserIDs[i.first]);
-		std::cout << "got grade " << grade << std::endl;
-		std::cout << "new size " << i.second.size() << std::endl;
 		Utility::reserveSize(i.second, which);
-		std::cout << "new size " << i.second.size() << std::endl;
 		i.second[which - 1] = grade;
 	}
 }
 
 void Gradebook::changeGrade(const std::string& category, const std::string& name, int which, float newGrade) {
 	Utility::reserveSize(mGrades[category][name], which);
-	mGrades[category][name][which] = newGrade;
+	mGrades[category][name][which - 1] = newGrade;
 }
 
 
