@@ -13,6 +13,15 @@
 #include <stdexcept>
 #include <iostream>
 
+namespace Utility {
+	void reserveSize(std::vector<float>& x, int which) {
+		if (x.size() < which) {
+			for (int i = x.size(); i < which; i++)
+				x.push_back(0);
+		}
+	}
+}
+
 void Gradebook::setWeights(std::string categories[], float weights[], int numberOf) {
 	float sum = 0.0f;
 	for (int i = 0; i < numberOf; i++) {
@@ -47,14 +56,15 @@ void Gradebook::processGrades(const std::string& category, std::function<float(c
 	for(auto& i : gradeSet) {
 		float grade = request(i.first, mUserIDs[i.first]);
 		std::cout << "got grade " << grade << std::endl;
-		for (int j = 0; j < which; j++)
-			i.second.push_back(0);
+		std::cout << "new size " << i.second.size() << std::endl;
+		Utility::reserveSize(i.second, which);
+		std::cout << "new size " << i.second.size() << std::endl;
 		i.second[which - 1] = grade;
 	}
 }
 
 void Gradebook::changeGrade(const std::string& category, const std::string& name, int which, float newGrade) {
-	mGrades[category][name].reserve(which);
+	Utility::reserveSize(mGrades[category][name], which);
 	mGrades[category][name][which] = newGrade;
 }
 

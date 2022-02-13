@@ -18,12 +18,15 @@ int main() {
 
 	book.addStudent("Josh", 1234);
 
-	book.processGrades("Programs", [](const std::string& name, int id){
-		std::cout << "enter grade for " + name + " (" + std::to_string(id) + "): ";
-		float grade;
-		std::cin >> grade;
-		return grade;
-	}, 1);
+	for (int i = 0; i < 4; i++) {
+		static auto getFunc = [](const std::string& name, int id){
+				std::cout << "enter grade for " + name + " (" + std::to_string(id) + "): ";
+				float grade;
+				std::cin >> grade;
+				return grade;
+		};
+		book.processGrades("Programs", getFunc, i + 1);
+	}
 
 	book.dumpGrades();
 	return 0;
