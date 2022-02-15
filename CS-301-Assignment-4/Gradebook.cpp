@@ -22,7 +22,7 @@ namespace Utility {
 	}
 }
 
-void Gradebook::setWeights(std::string categories[], float weights[], int numberOf) {
+void Gradebook::setGradebookDetails(std::string categories[], float weights[], int numberPerCategory[], int numberOf) {
 	float sum = 0.0f;
 	for (int i = 0; i < numberOf; i++) {
 		sum += weights[i];
@@ -31,7 +31,10 @@ void Gradebook::setWeights(std::string categories[], float weights[], int number
 		throw new std::invalid_argument("weights don't add together to be 100%");
 	else {
 		for (int i = 0; i < numberOf; i++) {
-			mWeights[categories[i]] = weights[i];
+			CategoryAttribute attrib;
+			attrib.mNumberPerCategory = numberPerCategory[i];
+			attrib.mWeight = weights[i];
+			mCategories.emplace(categories[i], attrib);
 		}
 	}
 }
@@ -44,17 +47,24 @@ void Gradebook::addStudent(const std::string& name, const int id) {
 	if (mUserIDs.contains(name))
 		throw new std::invalid_argument("user already exists in gradebook " + name);
 	mUserIDs[name] = id;
-	for(auto i : mWeights) {
+	for(auto i : mCategories) {
 		mGrades[i.first][name] = std::vector<float>();
 	}
 }
 
 
-void Gradebook::processGrades(const std::string& category, std::function<float(const std::string&, int)> request, int which) {
+void Gradebook::processGrades(
+			const std::string& category,
+			//calls for studentName, studentID, category, number
+			std::function<float(const std::string&, int, const std::string&, int)> request, int which) {
 //	std::map<std::string, std::map<std::string, std::vector<float>> > mGrades;
+	if (which > mCategories[category].mNumberPerCategory)
+		throw new std::invalid_argument(
+					"attempting to add a " + category +
+					" assignment larger than #" + std::to_string(mCategories[category].mNumberPerCategory));
 	auto& gradeSet = mGrades[category];
 	for(auto& i : gradeSet) {
-		float grade = request(i.first, mUserIDs[i.first]);
+		float grade = request(i.first, mUserIDs[i.first], category, which);
 		Utility::reserveSize(i.second, which);
 		i.second[which - 1] = grade;
 	}
@@ -67,9 +77,9 @@ void Gradebook::changeGrade(const std::string& category, const std::string& name
 
 
 void Gradebook::calculateGrades(std::map<std::string, float>& grades) {
-	for (auto i : mWeights) {
+	for (auto i : mCategories) {
 		auto category = i.first;
-		auto weight = i.second;
+		auto weight = i.second.mWeight;
 		auto gradedCategory = mGrades[category];
 		for (auto j : gradedCategory) {
 			float sum = 0;
@@ -85,9 +95,12 @@ void Gradebook::calculateGrades(std::map<std::string, float>& grades) {
 
 void Gradebook::dumpGrades() const {
 	for (auto i : mGrades) {
+		std::cout << i.first << std::endl;
 		for (auto j : i.second) {
+			std::cout << '\t' << j.first << std::endl;
+			int f = 0;
 			for (auto k : j.second) {
-				std::cout << i.first << ' ' << j.first << ' ' << k << std::endl;
+				std::cout << "\t\t" << ++f << ' ' << k << std::endl;
 			}
 		}
 	}

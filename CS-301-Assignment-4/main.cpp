@@ -15,22 +15,24 @@ int main() {
 	std::string categories[] = {"Programs", "Tests", "Exams"};
 	float weights[] = {50.0f, 20.0f, 30.0f};
 	int numberOfEachCategory[] = {1, 2, 3};
-	book.setWeights(categories, weights, numberOfCategories);
+	book.setGradebookDetails(categories, weights, numberOfEachCategory, numberOfCategories);
 
 	book.addStudent("Josh", 1234);
 	book.addStudent("Bill", 4321);
 
+
 	for (int i = 0; i < numberOfCategories; i++) {
 		auto category = categories[i];
 		for (int j = 0; j < numberOfEachCategory[i]; j++) {
-			auto getFunc = [category, j](const std::string& name, int id){
+			//std::function<float(const std::string&, int, const std::string&, int)> request, int which);
+			static auto getFunc = [](const std::string& name, int id, const std::string& category, int which){
 					std::cout << "enter grade for " << name << " (" << id
-							  << ") for " << category << " #" << j + 1 << ": ";
+							  << ") for " << category << " #" << which << ": ";
 					float grade;
 					std::cin >> grade;
 					return grade;
 			};
-			book.processGrades("Programs", getFunc, i + 1);
+			book.processGrades(category, getFunc, j + 1);
 		}
 	}
 

@@ -21,13 +21,24 @@ private:
 	const static int MIN_USER_ID = 1;
 	const static int MAX_USER_ID = 9999;
 
-	std::map<std::string, float> mWeights;
+	struct CategoryAttribute {
+		float mWeight;
+		int mNumberPerCategory;
+	};
+
+private:
+
+	std::map<std::string, CategoryAttribute> mCategories;
 	std::map<std::string, int> mUserIDs;
 	std::map<std::string, std::map<std::string, std::vector<float>> > mGrades;
+
 public:
-	void setWeights(std::string categories[], float weights[], int numberOf);
+	void setGradebookDetails(std::string categories[], float weights[], int numberPerCategory[], int numberOf);
 	void addStudent(const std::string& name, const int id);
-	void processGrades(const std::string& category, std::function<float(const std::string&, int)>request, int which);
+	void processGrades(
+			const std::string& category,
+			//calls for studentName, studentID, category, number
+			std::function<float(const std::string&, int, const std::string&, int)> request, int which);
 	void changeGrade(const std::string& category, const std::string& name, int which, float newGrade);
 	void calculateGrades(std::map<std::string, float>& grades);
 	void dumpGrades() const;
