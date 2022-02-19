@@ -40,6 +40,7 @@ public:
 			//calls for studentName, studentID, category, number
 			std::function<float(const std::string&, int, const std::string&, int)> request, int which);
 	void changeGrade(const std::string& category, const std::string& name, int which, float newGrade);
+	void changeGrade(const std::string& category, int studentId, int which, float newGrade);
 	void calculateGrades(std::map<std::string, float>& grades);
 	void dumpGrades(std::ostream& o) const;
 };

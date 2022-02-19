@@ -1,0 +1,84 @@
+weight for Programming (0-100): 50
+number of Programming (integer > 0): 4
+weight for Test (0-100): 20
+number of Test (integer > 0): 2
+weight for Final (0-100): 30
+number of Final (integer > 0): 1
+enter new student name (max 20 characters): blake
+enter new student id (1-9999): 211
+enter new student name (max 20 characters): james
+enter new student id (1-9999): 408
+enter new student name (max 20 characters): rene
+enter new student id (1-9999): 877
+enter assignment #: 1
+enter grade for blake (211) for Programming #1: 66
+enter grade for james (408) for Programming #1: 77
+enter grade for rene (877) for Programming #1: 88
+enter assignment #: 2
+enter grade for blake (211) for Programming #2: 77
+enter grade for james (408) for Programming #2: 88
+enter grade for rene (877) for Programming #2: 99
+enter assignment #: 3
+enter grade for blake (211) for Programming #3: 66
+enter grade for james (408) for Programming #3: 77
+enter grade for rene (877) for Programming #3: 88
+enter assignment #: 4
+enter grade for blake (211) for Programming #4: 55
+enter grade for james (408) for Programming #4: 66
+enter grade for rene (877) for Programming #4: 77
+enter student ID: 211
+enter assignment category: Programming
+enter assignment number #: 2
+enter new grade: 100
+enter student ID: 408
+enter assignment category: Programming
+enter assignment number #: 4
+enter new grade: 20
+enter assignment #: 1
+enter grade for blake (211) for Test #1: 80
+enter grade for james (408) for Test #1: 90
+enter grade for rene (877) for Test #1: 70
+enter assignment #: 2
+enter grade for blake (211) for Test #2: 62
+enter grade for james (408) for Test #2: 72
+enter grade for rene (877) for Test #2: 82
+enter assignment #: 1
+enter grade for blake (211) for Final #1: 90
+enter grade for james (408) for Final #1: 80
+enter grade for rene (877) for Final #1: 70
+Final
+	blake
+		1 90
+	james
+		1 80
+	rene
+		1 70
+Programming
+	blake
+		1 66
+		2 100
+		3 66
+		4 55
+	james
+		1 77
+		2 88
+		3 77
+		4 20
+	rene
+		1 88
+		2 99
+		3 88
+		4 77
+Test
+	blake
+		1 80
+		2 62
+	james
+		1 90
+		2 72
+	rene
+		1 70
+		2 82
+blake totaled 77.075
+james totaled 72.95
+rene totaled 80.2

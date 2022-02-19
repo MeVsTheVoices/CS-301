@@ -1,8 +1,0 @@
-Project plan
-
-Create a list container
-
-Test that it's working
-
-Create main function and start to provide functionality
-

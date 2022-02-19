@@ -1,0 +1,20 @@
+h1. Overview
+
+p). We're trying to create a gradebook that allows the user to create classes with weighted categories,
+add students, and input or change various assignments.
+
+h2. Functionality
+
+* Add students along with a student ID
+* Define categories along with an associate weight to be used in calculating grade
+* Storing transactions in to an associated file
+* Storing a gradebook in to an associated file
+* Allow for the input of of changing of various assignment grades for individual students
+* Use encapsulation and ADT types
+
+h2. Steps
+
+# Create a drive to test what we're doing
+# Replace stubs previously declared with actual implementations
+# Finish up stubs
+# Test, create relevant test runs and submit

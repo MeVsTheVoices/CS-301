@@ -61,11 +61,10 @@ void Gradebook::processGrades(
 			const std::string& category,
 			//calls for studentName, studentID, category, number
 			std::function<float(const std::string&, int, const std::string&, int)> request, int which) {
-//	std::map<std::string, std::map<std::string, std::vector<float>> > mGrades;
-	/*if (which > mCategories[category].mNumberPerCategory)
+	if (which > mCategories[category].mNumberPerCategory)
 		throw new std::invalid_argument(
 					"attempting to add a " + category +
-					" assignment larger than #" + std::to_string(mCategories[category].mNumberPerCategory));*/
+					" assignment larger than #" + std::to_string(mCategories[category].mNumberPerCategory));
 	auto& gradeSet = mGrades[category];
 	for(auto& i : gradeSet) {
 		float grade = request(i.first, mUserIDs[i.first], category, which);
@@ -83,6 +82,21 @@ void Gradebook::changeGrade(const std::string& category, const std::string& name
 	mGrades[category][name][which - 1] = newGrade;
 }
 
+void Gradebook::changeGrade(const std::string& category, int studentId, int which, float newGrade) {
+	std::string name;
+	bool found = false;
+	for (auto i : mUserIDs)
+		if (i.second == studentId) {
+			found = true;
+			name = i.first;
+		}
+	if (!found)
+		throw new std::invalid_argument(
+				"student ID: " + std::to_string(studentId) + " has not already been added to the gradebook");
+	else
+		changeGrade(category, name, which, newGrade);
+}
+
 
 void Gradebook::calculateGrades(std::map<std::string, float>& grades) {
 	for (auto i : mCategories) {
@@ -96,19 +110,19 @@ void Gradebook::calculateGrades(std::map<std::string, float>& grades) {
 				sum += j.second[numberOf];
 			if (!grades.contains(j.first))
 				grades[j.first] = 0.0f;
-			grades[j.first] = (sum / static_cast<float>((numberOf + 1))) * (1.0f/(100.0f - weight));
+			grades[j.first] += (weight/100) * (sum / numberOf);
 		}
 	}
 }
 
 void Gradebook::dumpGrades(std::ostream& o) const {
 	for (auto i : mGrades) {
-		std::cout << i.first << std::endl;
+		o << i.first << std::endl;
 		for (auto j : i.second) {
-			std::cout << '\t' << j.first << std::endl;
+			o << '\t' << j.first << std::endl;
 			int f = 0;
 			for (auto k : j.second) {
-				std::cout << "\t\t" << ++f << ' ' << k << std::endl;
+				o << "\t\t" << ++f << ' ' << k << std::endl;
 			}
 		}
 	}

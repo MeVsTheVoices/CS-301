@@ -14,14 +14,20 @@ void setupNewSemester(Gradebook& book, std::ostream& transactionFile);
 void addNewStudent(Gradebook& book, std::ostream& transactionFile);
 void recordAssignment(Gradebook& book, std::ostream& transactionFile, const std::string& category);
 void recordAssignmentForAll(Gradebook& book, std::ostream& transactionFile, const std::string& category, int which);
+void changeGrade(Gradebook& book, std::ostream& transactionFile);
+void calculateGrades(Gradebook& book, std::ostream& transactionFile);
 
 int main() {
 	Gradebook book;
 
 	const std::string transactionFileName = "Grades.trn";
+	const std::string datFileName = "Grades.dat";
 
 	std::ofstream transactionFile;
 	transactionFile.open(transactionFileName, std::ofstream::out | std::ofstream::app);
+
+	std::ofstream datFile;
+	datFile.open(datFileName, std::ofstream::out);
 
 	char transactionChoice = 'S';
 	while (transactionChoice != 'Q') {
@@ -50,14 +56,17 @@ int main() {
 			break;
 		case 'C':
 			//change grade
+			changeGrade(book, transactionFile);
 			break;
 		case 'G':
 			//calculate final grade
+			calculateGrades(book, transactionFile);
 			break;
 		case 'O':
 			//output grade data
 			book.dumpGrades(std::cout);
 			book.dumpGrades(transactionFile);
+			book.dumpGrades(datFile);
 			break;
 		case 'Q':
 			//quit
@@ -94,10 +103,12 @@ void addNewStudent(Gradebook& book, std::ostream& transactionFile) {
 	std::string name;
 	std::cin >> name;
 	transactionFile << "enter new student name (max 20 characters): " << name << std::endl;
+
 	std::cout << "enter new student id (1-9999): ";
 	int id;
 	std::cin >> id;
 	transactionFile << "enter new student id (1-9999): " << id << std::endl;
+
 	book.addStudent(name, id);
 }
 
@@ -106,6 +117,7 @@ void recordAssignment(Gradebook& book, std::ostream& transactionFile, const std:
 	int which;
 	std::cin >> which;
 	transactionFile << "enter assignment #: " << which << std::endl;
+
 	recordAssignmentForAll(book, transactionFile, category, which);
 }
 
@@ -122,3 +134,36 @@ void recordAssignmentForAll(Gradebook& book, std::ostream& transactionFile, cons
 	book.processGrades(category, getFunc, which);
 }
 
+void changeGrade(Gradebook& book, std::ostream& transactionFile) {
+	std::cout << "enter student ID: ";
+	int studentID;
+	std::cin >> studentID;
+	transactionFile << "enter student ID: " << studentID << std::endl;
+
+	std::cout << "enter assignment category: ";
+	std::string category;
+	std::cin >> category;
+	transactionFile << "enter assignment category: " << category << std::endl;
+
+	std::cout << "enter assignment number #: ";
+	int which;
+	std::cin >> which;
+	transactionFile << "enter assignment number #: " << which << std::endl;
+
+	//void changeGrade(const std::string& category, int studentId, int which, float newGrade);
+	std::cout << "enter new grade: ";
+	float newGrade;
+	std::cin >> newGrade;
+	transactionFile << "enter new grade: " << newGrade << std::endl;
+
+	book.changeGrade(category, studentID, which, newGrade);
+}
+
+void calculateGrades(Gradebook& book, std::ostream& transactionFile) {
+	std::map<std::string, float> grades;
+	book.calculateGrades(grades);
+	for (auto i : grades) {
+		std::cout << i.first << " totaled " << i.second << std::endl;
+		transactionFile << i.first << " totaled " << i.second << std::endl;
+	}
+}
