@@ -1,0 +1,36 @@
+weight for Programming (0-100): 50
+number of Programming (integer > 0): 1
+weight for Test (0-100): 20
+number of Test (integer > 0): 1
+weight for Final (0-100): 30
+number of Final (integer > 0): 1
+enter new student name (max 20 characters): jill
+enter new student id (1-9999): 1
+enter new student name (max 20 characters): josh
+enter new student id (1-9999): 2
+enter assignment #: 1
+weight for Programming (0-100): 50
+number of Programming (integer > 0): 1
+weight for Test (0-100): 20
+number of Test (integer > 0): 1
+weight for Final (0-100): 30
+number of Final (integer > 0): 1
+weight for Programming (0-100): 50
+number of Programming (integer > 0): 1
+weight for Test (0-100): 20
+number of Test (integer > 0): 1
+weight for Final (0-100): 30
+number of Final (integer > 0): 1
+enter new student name (max 20 characters): jill
+enter new student id (1-9999): 1
+enter new student name (max 20 characters): josh
+enter new student id (1-9999): 2
+enter assignment #: 1
+enter grade for jill (1) for Programming #1: 100
+enter grade for josh (2) for Programming #1: 100
+enter assignment #: 1
+enter grade for jill (1) for Test #1: 100
+enter grade for josh (2) for Test #1: 100
+enter assignment #: 1
+enter grade for jill (1) for Final #1: 100
+enter grade for josh (2) for Final #1: 100

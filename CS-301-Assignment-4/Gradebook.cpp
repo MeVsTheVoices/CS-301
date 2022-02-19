@@ -23,6 +23,10 @@ namespace Utility {
 }
 
 void Gradebook::setGradebookDetails(std::string categories[], float weights[], int numberPerCategory[], int numberOf) {
+	mCategories.clear();
+	mUserIDs.clear();
+	mGrades.clear();
+
 	float sum = 0.0f;
 	for (int i = 0; i < numberOf; i++) {
 		sum += weights[i];
@@ -58,10 +62,10 @@ void Gradebook::processGrades(
 			//calls for studentName, studentID, category, number
 			std::function<float(const std::string&, int, const std::string&, int)> request, int which) {
 //	std::map<std::string, std::map<std::string, std::vector<float>> > mGrades;
-	if (which > mCategories[category].mNumberPerCategory)
+	/*if (which > mCategories[category].mNumberPerCategory)
 		throw new std::invalid_argument(
 					"attempting to add a " + category +
-					" assignment larger than #" + std::to_string(mCategories[category].mNumberPerCategory));
+					" assignment larger than #" + std::to_string(mCategories[category].mNumberPerCategory));*/
 	auto& gradeSet = mGrades[category];
 	for(auto& i : gradeSet) {
 		float grade = request(i.first, mUserIDs[i.first], category, which);
@@ -71,6 +75,10 @@ void Gradebook::processGrades(
 }
 
 void Gradebook::changeGrade(const std::string& category, const std::string& name, int which, float newGrade) {
+	if (which > mCategories[category].mNumberPerCategory)
+		throw new std::invalid_argument(
+					"attempting to add a " + category +
+					" assignment larger than #" + std::to_string(mCategories[category].mNumberPerCategory));
 	Utility::reserveSize(mGrades[category][name], which);
 	mGrades[category][name][which - 1] = newGrade;
 }
@@ -93,7 +101,7 @@ void Gradebook::calculateGrades(std::map<std::string, float>& grades) {
 	}
 }
 
-void Gradebook::dumpGrades() const {
+void Gradebook::dumpGrades(std::ostream& o) const {
 	for (auto i : mGrades) {
 		std::cout << i.first << std::endl;
 		for (auto j : i.second) {
