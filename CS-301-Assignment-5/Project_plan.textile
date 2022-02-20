@@ -1,0 +1,39 @@
+h1. Assignment 5
+
+h2. Joshua Dunne - 20225_CS_301_03_1
+
+h3. Overview
+
+p(. We're creating a dynamic stack
+The point here is to read the lines in from one file, then
+spit them back out in to another file, as stacks are LIFO
+the resulting lines should be in reverse order
+
+h2. Dynamic stack
+
+p(. A dynamic stack is one that allows for insertion of an arbitrary number of elements. 
+Including the requirement that this should be templated allows for the insertion
+of any type of members. As it is a LIFO structure, unlike groceries on a shelf, 
+The newly inserted members should be those retrieved first
+
+h3. Naming
+
+* Going to name the stack type DynamicStack and put it in a namespace
+* Will keep my regular naming convenctions, camel case, m_ for members, g_ for globals a_ or l_ for local
+* Outside of the, the main method will define a couple helper functions
+** ReadInFile(DynamicStack<T>&, std::istream& inputFile);
+** ReadOutFile(DynamicStack<T>&, std::ostream& outputFile);
+
+h3. Process
+
+# Create and test a templated stack implementation
+# Put together some unit tests in a seperate build to test
+# Create a driver to read in from a file and in to the stack implementation
+# Finish up, forwards the output of the stack as its popped to another file
+# Check everything is working right
+
+h3. Testing
+
+* As the stack is templated, an easier way to test would be to enter digits 1, 2, ... n, then check that they are returned in reverse order when popping
+* This could be done with several types to check for clashes in operators
+* The input and output files should be populated, and their output examines to ensure no elements are missing or added, and that they are in the correct reverse order
