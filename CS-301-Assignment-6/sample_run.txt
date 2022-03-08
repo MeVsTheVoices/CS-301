@@ -1,0 +1,35 @@
+shows is not a palindrome
+radar is a palindrome
+takes is not a palindrome
+level is a palindrome
+civic is a palindrome
+busy is not a palindrome
+going is not a palindrome
+rotor is a palindrome
+kayak is a palindrome
+working is not a palindrome
+all palindromes come back as palindromes
+all non palindromes come back as non palindromes
+enter something to test as a palindrome: racecar
+racecar is a palindrome
+enter something to test as a palindrome: platform
+platform is not a palindrome
+enter something to test as a palindrome: walking
+walking is not a palindrome
+enter something to test as a palindrome: tot tot
+tot tot is a palindrome
+enter something to test as a palindrome: i did, did i
+i did, did i is not a palindrome
+enter something to test as a palindrome: i did did i
+i did did i is a palindrome
+enter something to test as a palindrome: wouldn't it be funny
+wouldn't it be funny is not a palindrome
+enter something to test as a palindrome: evil olive
+evil olive is not a palindrome
+enter something to test as a palindrome: help
+help is not a palindrome
+enter something to test as a palindrome: madam
+madam is a palindrome
+enter something to test as a palindrome: refer
+refer is a palindrome
+enter something to test as a palindrome: 
