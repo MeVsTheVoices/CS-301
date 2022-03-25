@@ -12,6 +12,7 @@
 #include <random>
 #include <limits>
 #include <iostream>
+#include <queue>
 
 const static std::string FILE_NAME = "a.out";
 
@@ -29,9 +30,18 @@ int main() {
 	in.open(FILE_NAME);
 	readFromFile(in, aTree);
 
-	aTree.traverseInOrder([](int a) {
-		std::cout << a << std::endl;
+	//use of queue
+	std::queue<int> aQueue;
+	aTree.traverseInOrder([&aQueue](int a) {
+		aQueue.emplace(a);
 	});
+
+	while (!aQueue.empty()) {
+		int x;
+		x = aQueue.front();
+		std::cout << x << std::endl;
+		aQueue.pop();
+	}
 
 	return 0;
 }
