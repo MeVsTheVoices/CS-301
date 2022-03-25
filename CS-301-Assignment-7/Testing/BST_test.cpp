@@ -5,7 +5,7 @@
  *      Author: Feast
  */
 
-#include "BST.hpp"
+#include "../BST.hpp"
 
 #include <queue>
 #include <iostream>
